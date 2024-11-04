@@ -75,13 +75,13 @@ def brl_to_labels(brl_by_lines):
         labels_by_lines.append(labels)
     return labels_by_lines
 
-def main(extracted_json):
-    predicted_brl_by_lines = extracted_json['prediction']['brl']
-    corrected_brl_by_lines = extracted_json['correction']['brl']
-    boxes_by_lines = extracted_json['prediction']['boxes']
+def main(request_json):
+    predicted_brl_by_lines = request_json['prediction']['brl']
+    corrected_brl_by_lines = request_json['correction']['brl']
+    boxes_by_lines = request_json['prediction']['boxes']
     
-    img = Image.open('test.jpg')
-    draw = ImageDraw.Draw(img)
+    # img = Image.open('test.jpg')
+    # draw = ImageDraw.Draw(img)
     
     corrected_coordinates_by_lines = []
     for predicted_brl, corrected_brl, boxes in zip(predicted_brl_by_lines, corrected_brl_by_lines, boxes_by_lines):
@@ -110,23 +110,28 @@ def main(extracted_json):
             
             corrected_coordinates.append(coordinates)
             
-            draw.rectangle(coordinates, outline='red')
-            char_to_draw = str(ord(gt['ocr_char']) - 0x2800) + "->" + str(ord(gt['correct_char']) - 0x2800)
-            draw.text((coordinates[0], coordinates[1] - 10), char_to_draw, fill='black')
+            # draw.rectangle(coordinates, outline='red')
+            # char_to_draw = str(ord(gt['ocr_char']) - 0x2800) + "->" + str(ord(gt['correct_char']) - 0x2800)
+            # draw.text((coordinates[0], coordinates[1] - 10), char_to_draw, fill='black')
         corrected_coordinates_by_lines.append(corrected_coordinates)
     
-    extracted_json['correction']['boxes'] =  corrected_coordinates_by_lines
-    extracted_json['correction']['labels'] = brl_to_labels(corrected_brl_by_lines)
-    img.save('result.jpg')
+    # request_json['correction']['boxes'] =  corrected_coordinates_by_lines
+    # request_json['correction']['labels'] = brl_to_labels(corrected_brl_by_lines)
+    # img.save('result.jpg')
     print('Done.')
-    print('Result image is saved as result.jpg')
+    # print('Result image is saved as result.jpg')
     print('Retruned JSON is updated.')
-    return extracted_json
+    return {
+        'correction': {
+            'boxes': corrected_coordinates_by_lines,
+            'labels': brl_to_labels(corrected_brl_by_lines)
+        }
+    }
     
     
 if __name__ == '__main__':
     with open('test.json', 'r') as f:
-        extracted_json = json.load(f)
+        request_json = json.load(f)
 
     with open('test.json', 'w') as f:
-        json.dump(main(extracted_json), f, indent=4, ensure_ascii=False)
+        json.dump(main(request_json), f, indent=4, ensure_ascii=False)
