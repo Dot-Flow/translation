@@ -33,7 +33,7 @@ def translate_to_text():
     역점역 - 점자 텍스트를 일반 텍스트로 변환합니다.
     ---
     tags:
-      - Translate_BrlToText
+      - Translation
     parameters:
       - name: body
         in: body
@@ -179,7 +179,7 @@ def translate_to_brl():
     점역 - 텍스트를 점자로 변환합니다.
     ---
     tags:
-      - Translate_TextToBrl
+      - Translation
     parameters:
       - name: body
         in: body
@@ -249,7 +249,7 @@ def feedback_generation():
     피드백 생성 - 역점역/교정/점역이 완료된 데이터를 이용하여 피드백을 생성합니다.
     ---
     tags:
-      - FeedbackGeneration
+      - Feedback
     parameters:
       - name: body
         in: body
@@ -359,7 +359,7 @@ def feedback_loop():
     피드백 루프 - 역점역/교정/점역/피드백생성을 순차적으로 수행합니다.
     ---
     tags:
-      - FeedbackLoop
+      - Feedback
     parameters:
       - name: body
         in: body
