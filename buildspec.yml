@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.12  # 프로젝트에서 사용하는 파이썬 버전
+    commands:
+      - echo "Installing dependencies..."
+      - pip install --upgrade pip
+      - pip install -r requirements.txt
+
+  pre_build:
+    commands:
+      - echo "Preparing build environment..."
+
+  build:
+    commands:
+      - echo "Starting the build process..."
+      - python -m unittest discover  # 유닛 테스트가 있다면 이 명령으로 실행
+
+  post_build:
+    commands:
+      - echo "Build finished."
+
+artifacts:
+  files:
+    - '**/*'  # 모든 파일을 아티팩트로 생성 (코드, 설정 파일 등)
+  discard-paths: yes  # 불필요한 경로 제외
