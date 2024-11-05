@@ -36,7 +36,7 @@ jobs:
 
       # 애플리케이션 패키징
       - name: Zip application for deployment
-        run: zip -r application.zip . -x "*.git*" "*.github*"
+        run: zip -r translation_app.zip . -x "*.git*" "*.github*"
 
       # AWS 인증 정보 설정
       - name: Configure AWS credentials
