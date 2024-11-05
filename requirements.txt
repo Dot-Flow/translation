@@ -18,7 +18,7 @@ Jinja2==3.1.4
 jiter==0.7.0
 jsonschema==4.23.0
 jsonschema-specifications==2024.10.1
-louis @ file:///home/vego/project/Translation/Translation/utils/liblouis-3.31.0/python
+# louis @ file:///home/vego/project/Translation/Translation/utils/liblouis-3.31.0/python
 MarkupSafe==3.0.2
 mistune==3.0.2
 openai==1.53.0
