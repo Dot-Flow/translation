@@ -29,7 +29,7 @@ def translate(input_brl_list):
         input_box.send_keys(input_brl)  # 변환할 텍스트 입력
         input_box.send_keys("\n")
         time.sleep(1)
-    time.sleep(1)
+    time.sleep(2)
     
 
     # 변환된 점자 결과를 가져오기
@@ -45,35 +45,34 @@ def translate(input_brl_list):
     
     return result_text_list
 
-if __name__ == "__main__":
+def test():
     with open('validate_list.txt', 'r') as f:
         ith_validate = f.readlines()
     for i in ith_validate:
         i = i.strip('\n')
         with open(i, "r", encoding="utf-8") as f:
             json_data = json.load(f)
-        try:
-            brl_list = json_data['brl']
-        except:
-            continue
-        translated_text_list = translate(brl_list)
-        with open(i, "w", encoding="utf-8") as f:
-            result_data = {'text': translated_text_list}
-            json.dump(result_data, f, ensure_ascii=False, indent=4)
             
-        file_name = i.split('/')[-1]
-        try:
-            with open('data/db/' + file_name, "r", encoding="utf-8") as f:
-                db_file = json.load(f)
-        except:
-            with open('data/db/' + file_name, "w", encoding="utf-8") as f:
-                db_file = {}
-                db_file['prediction'] = {}
-                db_file['correction'] = {}
-                db_file['prediction']['boxes'] = json_data['boxes'] if 'boxes' in json_data else []
-                db_file['prediction']['brl'] = json_data['brl'] if 'brl' in json_data else []
-                db_file['prediction']['labels'] = json_data['labels'] if 'labels' in json_data else []
-                json.dump(db_file, f, ensure_ascii=False, indent=4)
-        db_file['prediction']['text'] = translated_text_list
-        with open('data/db/' + file_name, "w", encoding="utf-8") as f:
-            json.dump(db_file, f, ensure_ascii=False, indent=4)
+        boxes_list = json_data['boxes']
+        brl_list = json_data['brl']
+        labels_list = json_data['labels']
+        
+        translated_text_list = translate(brl_list)
+        # with open(i, "w", encoding="utf-8") as f:
+        #     result_data = {'text': translated_text_list}
+        #     json.dump(result_data, f, ensure_ascii=False, indent=4)
+        result_data = {}
+        result_data['prediction'] = {}
+        result_data['prediction']['boxes'] = boxes_list
+        result_data['prediction']['brl'] = brl_list
+        result_data['prediction']['labels'] = labels_list
+        result_data['prediction']['text'] = translated_text_list
+        
+        result_data['correction'] = {}
+        result_data['correction']['boxes'] = []
+        result_data['correction']['brl'] = []
+        result_data['correction']['labels'] = []
+        result_data['correction']['text'] = []
+        
+        with open(i, "w", encoding="utf-8") as f:
+            json.dump(result_data, f, ensure_ascii=False, indent=4)

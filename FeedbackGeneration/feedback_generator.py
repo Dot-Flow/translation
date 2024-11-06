@@ -66,10 +66,15 @@ def brl_to_labels(brl_by_lines):
     return labels_by_lines
 
 def main(request_json, img_path=None):
+    print('Feedback generation', img_path)
     predicted_brl_by_lines = request_json['prediction']['brl']
     corrected_brl_by_lines = request_json['correction']['brl']
     boxes_by_lines = request_json['prediction']['boxes']
-    answer_count = request_json['answer_count']
+    try:
+        answer_count = request_json['answer_count']
+    except:
+        request_json['answer_count'] = None
+        answer_count = None
     
     if img_path is not None:
         try:
@@ -132,6 +137,8 @@ def main(request_json, img_path=None):
         print('Answer count:', answer_count)
     # print('Result image is saved as result.jpg')
     print('Retruned JSON is updated.')
+    img_name = img_path.split('/')[-1]
+    img.save('data/s3/' + img_name)
     return {
         'correction': {
             'boxes': corrected_coordinates_by_lines,
@@ -140,35 +147,35 @@ def main(request_json, img_path=None):
         'equal_count': equal_count_result,
         'corrected_count': corrected_brl_count,
         'answer_count': answer_count,
-    }, img
+    }
     
     
-if __name__ == '__main__':
+def test():
+    import json
+    img_path = 'data/images/'
     with open('validate_list.txt', 'r') as f:
         ith_validate = f.readlines()
-    db_path = 'data/db/'
-    img_result_path = 'data/s3/'
     for i in ith_validate:
         i = i.strip('\n')
-        i = db_path + i.split('/')[-1]
-        img_path = i.replace('json', 'jpg')
-        print(i)
+        with open(i, "r", encoding="utf-8") as f:
+            json_data = json.load(f)
+            
+        feedback_json = main(json_data, img_path + i.split('/')[-1].replace('.json', '.jpg'))
         
-        with open(i, 'r') as f:
-            request_json = json.load(f)
-        # input_json ={
-        #     "prediction": {
-        #         "boxes": request_json['prediction']['boxes'],
-        #         "brl": request_json['prediction']['brl']
-        #     },
-        #     "correction": {
-        #         "brl": request_json['correction']['brl']
-        #     }
-        # }
+        # json_data['prediction']
+        # json_data['prediction']['boxes']
+        # json_data['prediction']['brl']
+        # json_data['prediction']['labels']
+        # json_data['prediction']['text']
         
-        result_json, result_img = main(request_json, img_path)
-        with open(i, 'w') as f:
-            json.dump(result_json, f, indent=4)
-        if result_img is not None:
-            result_img.save(img_result_path + img_path.split('/')[-1])
-    
+        # json_data['correction']
+        json_data['correction']['boxes'] = feedback_json['correction']['boxes']
+        # json_data['correction']['brl']
+        json_data['correction']['labels'] = feedback_json['correction']['labels']
+        # json_data['correction']['text']
+        json_data['equal_count'] = feedback_json['equal_count']
+        json_data['corrected_count'] = feedback_json['corrected_count']
+        json_data['answer_count'] = feedback_json['answer_count']
+        
+        with open(i, "w", encoding="utf-8") as f:
+            json.dump(json_data, f, ensure_ascii=False, indent=4)

@@ -327,7 +327,7 @@ class KorToBraille:
             self.flag_17 = False
             
         result = result[:-1]
-        # result = louis.translateString(["braille-patterns.cti", "en-us-g2.ctb"], result)
+        result = louis.translateString(["braille-patterns.cti", "en-us-g2.ctb"], result)
         return result
 
 
