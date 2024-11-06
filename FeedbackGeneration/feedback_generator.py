@@ -50,8 +50,11 @@ def generate_ground_truth(predicted_brl, corrected_brl, image_coordinates):
 
     # equal 태그를 가진 아이템의 개수 세기
     equal_count = sum(1 for item in ground_truth if item['tag'] == 'equal' if item['correct_char'] != '⠀')
-
-    return ground_truth, equal_count
+    replace_count = sum(1 for item in ground_truth if item['tag'] == 'replace' if item['correct_char'] != '⠀')
+    delete_count = sum(1 for item in ground_truth if item['tag'] == 'delete' if item['correct_char'] != '⠀')
+    insert_count = sum(1 for item in ground_truth if item['tag'] == 'insert' if item['correct_char'] != '⠀')
+    
+    return ground_truth, equal_count, replace_count, delete_count, insert_count
 
 def brl_to_labels(brl_by_lines):
     labels_by_lines = []
@@ -86,10 +89,16 @@ def main(request_json, img_path=None):
     
     corrected_coordinates_by_lines = []
     equal_count_result = 0
+    replace_count_result = 0
+    delete_count_result = 0
+    insert_count_result = 0
     for predicted_brl, corrected_brl, boxes in zip(predicted_brl_by_lines, corrected_brl_by_lines, boxes_by_lines):
         # print(corrected_brl)
-        ground_truth, equal_count = generate_ground_truth(predicted_brl, corrected_brl, boxes)
+        ground_truth, equal_count, replace_count, delete_count, insert_count = generate_ground_truth(predicted_brl, corrected_brl, boxes)
         equal_count_result += equal_count
+        replace_count_result += replace_count
+        delete_count_result += delete_count
+        insert_count_result += insert_count
         # print(ground_truth)
         # print(equal_count)
         # print(equal_count_result)
@@ -132,6 +141,9 @@ def main(request_json, img_path=None):
     # img.save('result.jpg')
     print('Done.')
     print('Equal count:', equal_count_result)
+    print('Replace count:', replace_count_result)
+    print('Delete count:', delete_count_result)
+    print('Insert count:', insert_count_result)
     print('Corrected count:', corrected_brl_count)
     if answer_count is not None:
         print('Answer count:', answer_count)
@@ -145,6 +157,10 @@ def main(request_json, img_path=None):
             'labels': brl_to_labels(corrected_brl_by_lines),
         },
         'equal_count': equal_count_result,
+        'replace_count': replace_count_result,
+        'delete_count': delete_count_result,
+        'insert_count': insert_count_result,
+        
         'corrected_count': corrected_brl_count,
         'answer_count': answer_count,
     }
@@ -152,6 +168,11 @@ def main(request_json, img_path=None):
     
 def test():
     import json
+    total_equal_count = 0
+    total_replace_count = 0
+    total_delete_count = 0
+    total_insert_count = 0
+    total_corrected_count = 0
     img_path = 'data/images/'
     with open('validate_list.txt', 'r') as f:
         ith_validate = f.readlines()
@@ -174,8 +195,24 @@ def test():
         json_data['correction']['labels'] = feedback_json['correction']['labels']
         # json_data['correction']['text']
         json_data['equal_count'] = feedback_json['equal_count']
+        json_data['replace_count'] = feedback_json['replace_count']
+        json_data['delete_count'] = feedback_json['delete_count']
+        json_data['insert_count'] = feedback_json['insert_count']
         json_data['corrected_count'] = feedback_json['corrected_count']
         json_data['answer_count'] = feedback_json['answer_count']
         
+        total_equal_count += feedback_json['equal_count']
+        total_replace_count += feedback_json['replace_count']
+        total_delete_count += feedback_json['delete_count']
+        total_insert_count += feedback_json['insert_count']
+        total_corrected_count += feedback_json['corrected_count']
+        
         with open(i, "w", encoding="utf-8") as f:
             json.dump(json_data, f, ensure_ascii=False, indent=4)
+    
+    print('Total equal count:', total_equal_count)
+    print('Total replace count:', total_replace_count)
+    print('Total delete count:', total_delete_count)
+    print('Total insert count:', total_insert_count)
+    print('Total corrected count:', total_corrected_count)
+    
