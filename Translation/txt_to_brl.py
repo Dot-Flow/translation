@@ -1,4 +1,4 @@
-from .utils.KorToBraille.KorToBraille import KorToBraille
+from utils.KorToBraille.KorToBraille import KorToBraille
 import louis
 import re
 
@@ -39,10 +39,32 @@ def translate(text_list):
 
 if __name__ == "__main__":
     import json
-    with open("test.json", "r", encoding="utf-8") as f:
-        json_data = json.load(f)
-    translated_brl = []
-    for text in json_data["correction"]["text"]:
-        translated_brl.append(b.korTranslate(text))
-        print(f"입력 텍스트: {text}\n변환된 점자: {translated_brl[-1]}")
-    print(translated_brl)
+    
+    with open('validate_list.txt', 'r') as f:
+        ith_validate = f.readlines()
+    for i in ith_validate:
+        i = i.strip('\n')
+        with open(i, "r", encoding="utf-8") as f:
+            json_data = json.load(f)
+        try:
+            text_list = json_data['text']
+        except:
+            continue
+        translated_brl_list = translate(text_list)
+        with open(i, "w", encoding="utf-8") as f:
+            result_data = {'brl': translated_brl_list}
+            json.dump(result_data, f, ensure_ascii=False, indent=4)
+            
+        file_name = i.split('/')[-1]
+        try:
+            with open('data/db/' + file_name, "r", encoding="utf-8") as f:
+                db_file = json.load(f)
+        except:
+            with open('data/db/' + file_name, "w", encoding="utf-8") as f:
+                db_file = {}
+                db_file['prediction'] = {}
+                db_file['correction'] = {}
+                json.dump(db_file, f, ensure_ascii=False, indent=4)
+        db_file['correction']['brl'] = translated_brl_list
+        with open('data/db/' + file_name, "w", encoding="utf-8") as f:
+            json.dump(db_file, f, ensure_ascii=False, indent=4)
