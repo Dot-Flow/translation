@@ -1,4 +1,4 @@
-import Translation.brl_to_txt as b2t
+import Translation.brl_to_txt_dev as b2t
 import ContextualErrorCorrection.contextual_error_correction as cec
 import Translation.txt_to_brl as t2b
 import FeedbackGeneration.feedback_generator as fg
