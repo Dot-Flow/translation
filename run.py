@@ -1,4 +1,5 @@
-from Translation import brl_to_txt_dev as b2t
+import logging
+from Translation import brl_to_txt as b2t
 from Translation import txt_to_brl as t2b
 from ContextualErrorCorrection import contextual_error_correction as cec
 from FeedbackGeneration import feedback_generator as fg
@@ -8,24 +9,32 @@ from flask import Flask, request, jsonify, Response
 from flasgger import Swagger
 # http://localhost:5000/apidocs/
 
+# 로그 설정
+logging.basicConfig(level=logging.INFO, filename='app.log', filemode='a',
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
 app = Flask(__name__)
 swagger = Swagger(app)
 
 def process_to_text(request_json):
-    print("Process: translation - to text")
+    logging.info("Process: translation - to text")
     
     if not isinstance(request_json, dict):
+        logging.error("Invalid input format")
         return jsonify({'error': 'Invalid input format'}), 400    
     
     brl_list = request_json['brl']
     
     if brl_list is None:
+        logging.error("점자 인식 오류")
         return jsonify({'error': '점자 인식 오류'}), 500
     
     try:
         translated_text = b2t.translate(brl_list)  # 점자 번역 함수
+        logging.info("Translation successful")
         return jsonify({'text': translated_text}), 200
     except Exception as e:
+        logging.error(f"서버 오류 발생: {e}")
         return jsonify({'error': '서버 오류 발생'}), 500
 
 @app.route('/translate/to-text', methods=['POST'])
@@ -87,17 +96,20 @@ def translate_to_text():
 
 
 def process_correction(request_json):
-    print("Process: correction")
+    logging.info("Process: correction")
     
     text_list = request_json['text']
     
     if text_list is None:
+        logging.error("텍스트 추출 오류")
         return jsonify({'error': '텍스트 추출 오류'}), 500
     
     try:
         correct_text = cec.correct(text_list)  # 텍스트 오류 수정 함수
+        logging.info("Correction successful")
         return jsonify({'text': correct_text}), 200
     except Exception as e:
+        logging.error(f"서버 오류 발생: {e}")
         return jsonify({'error': '서버 오류 발생'}), 500
 
 @app.route('/correction', methods=['POST'])
@@ -159,19 +171,24 @@ def correction():
 
 
 def process_to_brl(request_json):
-    print("Process: translation - to braille")
+    logging.info("Process: translation - to braille")
     
     if not isinstance(request_json, dict):
+        logging.error("Invalid input format")
         return jsonify({'error': 'Invalid input format'}), 400
     
     text_list = request_json['text']
     
     if text_list is None:
+        logging.error("텍스트 오류 수정 오류")
         return jsonify({'error': '텍스트 오류 수정 오류'}), 500
     
     try:
-        return jsonify({'text': t2b.translate(text_list)})  # 텍스트를 점자로 번역하는 함수
+        translated_brl = t2b.translate(text_list)  # 텍스트를 점자로 번역하는 함수
+        logging.info("Translation to braille successful")
+        return jsonify({'text': translated_brl}), 200
     except Exception as e:
+        logging.error(f"서버 오류 발생: {e}")
         return jsonify({'error': '서버 오류 발생'}), 500
     
 @app.route('/translate/to-brl', methods=['POST'])
@@ -233,15 +250,18 @@ def translate_to_brl():
 
 
 def process_feedback_generation(request_json):
-    print("Process: feedback generation")
+    logging.info("Process: feedback generation")
     
     if not isinstance(request_json, dict):
+        logging.error("Invalid input format")
         return jsonify({'error': 'Invalid input format'}), 400
     
-    
     try:
-        return jsonify(fg.main(request_json)), 200  # 피드백 생성 함수
+        feedback = fg.main(request_json)  # 피드백 생성 함수
+        logging.info("Feedback generation successful")
+        return jsonify(feedback), 200
     except Exception as e:
+        logging.error(f"서버 오류 발생: {e}")
         return jsonify({'error': '서버 오류 발생'}), 500
     
 @app.route('/feedback/generate', methods=['POST'])
@@ -345,7 +365,7 @@ def feedback_generation():
 
 
 def process_feedback_loop(request_json):
-    print("Process: feedback loop")
+    logging.info("Process: feedback loop")
     
     text_json = process_to_text(request_json)
     correct_text_json = process_correction(text_json)
@@ -430,5 +450,6 @@ def feedback_loop():
 
 
 if __name__ == '__main__':
+    logging.info("Starting Flask app")
     app.run(debug=False)
-    
+    logging.info("Flask app stopped")

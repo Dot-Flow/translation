@@ -23,30 +23,44 @@ def translate(input_brl_list):
     
     # 해당 페이지로 이동
     driver.get("https://t.hi098123.com/braille")
-
+    
     # 변환할 텍스트를 입력 (예시: 'happy')
-    time.sleep(3)
-    
-    # 역점역 버튼 클릭 (JavaScript 사용)
-    convert_button = driver.find_element(By.XPATH, "//div[@id='bar']/button[@data-name='역점역 (점자해석/묵역)']")
-    driver.execute_script("arguments[0].click();", convert_button)
-    
-    time.sleep(1)
-    
-    input_box = driver.find_element(By.ID, "input")  # 입력 필드 ID가 'input'이라고 가정
-    input_box.clear()  # 입력 필드 초기화
+    try:
+        input_box = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "input")))
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "input")))
+    except Exception as e:
+        print(f"Error: {e}")
+        driver.quit()
+        return
+    # input_box.clear()  # 입력 필드 초기화
     
     for input_brl in input_brl_list:
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "input")))
         input_box.send_keys(input_brl)  # 변환할 텍스트 입력
         input_box.send_keys("\n")
-        time.sleep(1)
-    time.sleep(2)
     
-
+    # 역점역 버튼 클릭 (JavaScript 사용)
+    try:
+        convert_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//div[@id='bar']/button[@data-name='역점역 (점자해석/묵역)']"))
+        )
+        driver.execute_script("arguments[0].click();", convert_button)
+    except Exception as e:
+        print(f"Error: {e}")
+        driver.quit()
+        return
+    
     # 변환된 점자 결과를 가져오기
-    output_box = driver.find_element(By.ID, "plain")
-    result_text = output_box.text  # 결과 텍스트 가져오기
-    result_text_list = result_text.split("\n")
+    try:
+        output_box = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.ID, "plain"))
+        )
+        result_text = output_box.text  # 결과 텍스트 가져오기
+        result_text_list = result_text.split("\n")
+    except Exception as e:
+        print(f"Error: {e}")
+        driver.quit()
+        return
 
     print(f"입력 텍스트: {input_brl}\n변환된 점자: {result_text_list}")
     
@@ -79,7 +93,7 @@ def test():
         result_data['prediction'] = {}
         result_data['prediction']['boxes'] = boxes_list
         result_data['prediction']['brl'] = brl_list
-        result_data['prediction']['labels'] = labels_list if 'labels' in json_data else []
+        # result_data['prediction']['labels'] = labels_list if 'labels' in json_data else []
         result_data['prediction']['text'] = translated_text_list
         
         result_data['correction'] = {}
@@ -92,4 +106,34 @@ def test():
             json.dump(result_data, f, ensure_ascii=False, indent=4)
 
 if __name__ == '__main__':
-    test()
+    # test()
+    import time
+    cur_time = time.time()
+    print(cur_time)
+    translate([
+            "⠼⠁⠀⠦⠆⠼⠁⠰⠴⠑⠛⠊⠒⠝⠠⠎⠉⠵⠀⠟⠐⠩⠀⠱⠁⠇⠝⠠⠎",
+            "⠫⠰⠕⠫⠀⠑⠗⠍⠀⠋⠵⠀⠕⠨⠕⠃⠓⠪⠀⠇⠶⠚⠻⠀⠑⠛⠨⠐⠮⠐",
+            "⠦⠆⠼⠃⠰⠴⠑⠛⠊⠒⠝⠠⠎⠉⠵⠀⠟⠐⠩⠀⠰⠽⠰⠥⠺⠀⠇⠶⠚⠻",
+            "⠑⠛⠨⠣⠟⠀⠈⠥⠊⠗⠀⠕⠨⠕⠃⠓⠪⠀⠇⠶⠚⠻⠀⠑⠛⠨⠐⠮⠐",
+            "⠦⠆⠼⠉⠰⠴⠑⠛⠊⠒⠝⠠⠎⠉⠵⠀⠈⠥⠊⠗⠀⠕⠨⠕⠃⠓⠪⠀⠇⠶⠚⠻",
+            "⠑⠛⠨⠣⠺⠀⠚⠗⠊⠭⠀⠈⠌⠈⠕⠫⠀⠊⠽⠒⠀⠠⠦⠐⠥⠨⠝⠓⠠⠹⠴⠄",
+            "⠮⠐⠀⠦⠆⠼⠙⠰⠴⠑⠛⠊⠒⠝⠠⠎⠉⠵⠀⠑⠛⠨⠣⠺⠀⠘⠂⠊⠂",
+            "⠈⠧⠨⠻⠮⠀⠘⠥⠱⠀⠨⠍⠉⠵⠀⠈⠥⠊⠗⠀⠕⠨⠕⠃⠓⠪⠀⠇⠶⠚⠻",
+            "⠑⠛⠨⠣⠝⠀⠊⠗⠚⠗⠀⠠⠞⠑⠻⠚⠈⠥⠀⠕⠌⠠⠪⠃⠉⠕⠊⠲",
+            "⠼⠃⠀⠈⠥⠊⠗⠀⠕⠨⠕⠃⠓⠪⠀⠇⠶⠚⠻⠀⠑⠛⠨⠣⠟",
+            "⠠⠦⠚⠕⠝⠐⠥⠈⠮⠐⠕⠙⠪⠴⠄⠉⠵⠀⠰⠥⠈⠕⠝⠉⠵",
+            "⠠⠊⠪⠄⠈⠮⠨⠣⠧⠀⠠⠥⠐⠕⠈⠮⠨⠣⠺⠀⠠⠻⠈⠱⠁⠕",
+            "⠚⠷⠬⠶⠊⠽⠊⠫⠀⠨⠎⠢⠰⠣⠀⠠⠥⠐⠕⠐⠮⠀⠉⠓⠉⠗⠉⠵",
+            "⠑⠛⠨⠐⠥⠀⠘⠠⠈⠍⠗⠎⠌⠉⠵⠊⠝⠐⠀⠕⠀⠈⠧⠨⠻⠕⠀⠑⠛⠨⠣⠺",
+            "⠕⠂⠘⠒⠨⠹⠟⠀⠘⠂⠊⠂⠀⠈⠧⠨⠻⠮⠀⠘⠥⠱⠀⠨⠛⠊⠉⠵",
+            "⠨⠎⠢⠝⠠⠎⠀⠋⠵⠀⠫⠰⠕⠫⠀⠕⠌⠠⠪⠃⠉⠕⠊⠲",
+            "⠿⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠿",
+            "⠼⠚⠋⠉⠠⠨⠭⠀⠥⠉⠮⠺⠀⠎⠚⠍⠗",
+            "⠕⠂⠇⠶⠐⠂⠀⠉⠂⠑⠊⠀⠘⠒⠘⠭⠊⠽⠉⠵⠀⠠⠗⠶⠚⠧⠂⠲",
+            "⠘⠱⠁⠚⠧⠐⠂⠀⠈⠾⠑⠯⠕⠉⠀⠊⠿⠈⠯⠐⠀⠑⠍⠊⠎⠢",
+            "⠊⠪⠶⠺⠀⠘⠱⠁⠝⠀⠈⠪⠐⠟⠀⠈⠪⠐⠕⠢⠲",
+            "⠑⠛⠜⠶⠐⠂⠀⠨⠍⠐⠥⠀⠈⠾⠑⠯⠕⠉⠀⠈⠿⠌⠙⠍⠢⠀⠊⠪⠶⠺",
+            "⠑⠍⠉⠺⠲",
+            "⠙⠼⠁⠉⠀⠀⠑⠛⠚⠧⠀⠼⠚⠁⠀⠑"
+        ])
+    print(time.time() - cur_time)
