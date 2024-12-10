@@ -59,7 +59,8 @@ class TestFlaskApp(unittest.TestCase):
 if __name__ == '__main__':
     # unittest.main()
     
-    BASE_URL = 'http://52.23.254.128:8080'
+    # BASE_URL = 'http://52.23.254.128:8080'
+    BASE_URL = 'http://localhost:5000'
     url = f'{BASE_URL}/translate/to-text'
     data = {'brl': [
             "⠼⠁⠀⠦⠆⠼⠁⠰⠴⠑⠛⠊⠒⠝⠠⠎⠉⠵⠀⠟⠐⠩⠀⠱⠁⠇⠝⠠⠎",

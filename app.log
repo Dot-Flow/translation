@@ -1,0 +1,35 @@
+2024-12-08 19:16:58,881 - root - INFO - Starting Flask app
+2024-12-08 19:16:58,883 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-08 19:16:58,883 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-08 19:20:20,583 - root - INFO - Flask app stopped
+2024-12-08 19:20:37,579 - root - INFO - Starting Flask app
+2024-12-08 19:20:37,581 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-08 19:20:37,581 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-08 19:20:38,929 - root - INFO - Process: translation - to text
+2024-12-08 19:20:38,929 - WDM - INFO - ====== WebDriver manager ======
+2024-12-08 19:20:39,132 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2024-12-08 19:20:49,144 - root - ERROR - 서버 오류 발생: Could not reach host. Are you offline?
+2024-12-08 19:20:49,145 - werkzeug - INFO - 127.0.0.1 - - [08/Dec/2024 19:20:49] "[35m[1mPOST /translate/to-text HTTP/1.1[0m" 500 -
+2024-12-08 19:21:28,961 - root - INFO - Flask app stopped
+2024-12-08 19:21:30,204 - root - INFO - Starting Flask app
+2024-12-08 19:21:30,205 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2024-12-08 19:21:30,205 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-08 19:21:31,394 - root - INFO - Process: translation - to text
+2024-12-08 19:21:31,394 - WDM - INFO - ====== WebDriver manager ======
+2024-12-08 19:21:31,437 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2024-12-08 19:21:41,450 - root - ERROR - 서버 오류 발생: Could not reach host. Are you offline?
+2024-12-08 19:21:41,451 - werkzeug - INFO - 127.0.0.1 - - [08/Dec/2024 19:21:41] "[35m[1mPOST /translate/to-text HTTP/1.1[0m" 500 -
+2024-12-08 19:24:24,006 - root - INFO - Flask app stopped
+2024-12-08 19:24:26,283 - root - INFO - Starting Flask app
+2024-12-08 19:24:26,284 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2024-12-08 19:24:26,284 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-08 19:24:28,879 - root - INFO - Process: translation - to text
+2024-12-08 19:24:28,879 - WDM - INFO - ====== WebDriver manager ======
+2024-12-08 19:24:28,924 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2024-12-08 19:24:38,937 - root - ERROR - 서버 오류 발생: Could not reach host. Are you offline?
+2024-12-08 19:24:38,937 - werkzeug - INFO - 127.0.0.1 - - [08/Dec/2024 19:24:38] "[35m[1mPOST /translate/to-text HTTP/1.1[0m" 500 -
+2024-12-08 19:59:23,636 - root - INFO - Flask app stopped
