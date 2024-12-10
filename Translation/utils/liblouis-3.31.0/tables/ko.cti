@@ -90,28 +90,28 @@ include litdigits6Dots.uti
 # Letters are defined in chardefs.cti
 
 # punctuation
-prepunc ( 36
-word ( 36
-noback always ( 36
-postpunc ) 36
-word ) 36
-noback always ) 36
+prepunc ( 236-3
+word ( 236-3
+noback always ( 236-3
+postpunc ) 6-356
+word ) 6-356
+noback always ) 6-356
 prepunc " 236
 postpunc " 356
 word " 236
 prepunc ` 236
-prepunc ' 6-236
-postpunc ' 356-3
+prepunc ‘ 6-236
+always ’ 356-3
 word ' 4-3
 word 'em = 
 word 'tis =
 word 'twas =
-begnum # 3456 print number sign before number
+# begnum # 3456 print number sign before number
 midnum , 5
 postpunc , 5
 word , 5
 noback always , 5
-decpoint . 3
+# decpoint . 3
 midnum - 36
 hyphen - 36
 always \s--\s 36-36
@@ -149,18 +149,18 @@ always ~ 36-36
 always & 4-12346
 midnum * 5-23
 always * 35-35
-prepunc [ 236-3
-word [ 236-3
-always [ 236-3
-postpunc ] 6-356
-word ] 6-356
-always ] 6-356
-prepunc { 236-23
-word { 236-23
-always { 236-23
-postpunc } 56-356
-word } 56-356
-always } 56-356
+prepunc [ 236-23
+word [ 236-23
+always [ 236-23
+postpunc ] 56-356
+word ] 56-356
+always ] 56-356
+prepunc { 236-2
+word { 236-2
+always { 236-2
+postpunc } 5-356
+word } 5-356
+always } 5-356
 always @ 4-1
 always \\ 4-1256
 always | 456-1256
@@ -168,7 +168,7 @@ always \s-\s 36
 always ..." 5-5-5-356
 always … 5-5-5
 always ... 5-5-5
-always ...' 5-5-5-356-3
+# always ...' 5-5-5-356-3
 repeated .... 0
 repeated ____ 6-36-36-3
 repeated ---- 36
