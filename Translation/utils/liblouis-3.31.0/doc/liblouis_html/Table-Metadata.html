@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for liblouis (version 3.31.0, 5 November 2024),
+a Braille Translation and Back-Translation Library derived from the
+Linux screen reader BRLTTY.
+
+
+Copyright © 1999-2006 by the BRLTTY Team.
+
+Copyright © 2004-2007 ViewPlus Technologies, Inc.
+www.viewplus.com.
+
+Copyright © 2007, 2009 Abilitiessoft, Inc.
+www.abilitiessoft.org.
+
+Copyright © 2014, 2016 Swiss Library for the Blind, Visually
+Impaired and Print Disabled. www.sbs.ch.
+
+
+This file is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser (or library) General Public License
+(LGPL) as published by the Free Software Foundation; either version 3,
+or (at your option) any later version.
+
+This file is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+Lesser (or Library) General Public License LGPL for more details.
+
+You should have received a copy of the GNU Lesser (or Library) General
+Public License (LGPL) along with this program; see the file COPYING.
+If not, write to the Free Software Foundation, 51 Franklin Street,
+Fifth Floor, Boston, MA 02110-1301, USA. -->
+<title>Table Metadata (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)</title>
+
+<meta name="description" content="Table Metadata (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)">
+<meta name="keywords" content="Table Metadata (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Testing-Translation-Tables-interactively.html" rel="next" title="Testing Translation Tables interactively">
+<link href="Notes-on-Back_002dTranslation.html" rel="prev" title="Notes on Back-Translation">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="chapter-level-extent" id="Table-Metadata">
+<div class="nav-panel">
+<p>
+Next: <a href="Testing-Translation-Tables-interactively.html" accesskey="n" rel="next">Testing Translation Tables interactively</a>, Previous: <a href="Notes-on-Back_002dTranslation.html" accesskey="p" rel="prev">Notes on Back-Translation</a>, Up: <a href="index.html" accesskey="u" rel="up">Liblouis User&rsquo;s and Programmer&rsquo;s Manual</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h2 class="chapter" id="Table-Metadata-1"><span>4 Table Metadata<a class="copiable-link" href="#Table-Metadata-1"> &para;</a></span></h2>
+
+<p>Translation tables may contain metadata. This makes them
+discoverable. Programs may for example use the Liblouis function
+<a class="ref" href="lou_005ffindTable.html"><code class="code">lou_findTable</code></a> to find a table based on a
+special query of which the <a class="ref" href="#Query-Syntax">syntax</a> is described
+below.
+</p>
+<ul class="mini-toc">
+<li><a href="#Syntax" accesskey="1">Syntax</a></li>
+<li><a href="#Query-Syntax-1" accesskey="2">Query Syntax</a></li>
+</ul>
+<div class="section-level-extent" id="Syntax">
+<h3 class="section"><span>4.1 Syntax<a class="copiable-link" href="#Syntax"> &para;</a></span></h3>
+
+<p>Metadata must be defined in special comments within the table
+header. The table header is the area at the top of the file, before
+the first translation rule, consisting of only comments or empty
+lines. Any metadata within included tables is ignored.
+</p>
+<p>A metadata field must be defined on its own line, starting with
+<code class="code">#+</code>. It has the following syntax:
+</p>
+<div class="example">
+<pre class="example-preformatted">#+&lt;key&gt;: &lt;value&gt;
+</pre></div>
+
+<p>where &lsquo;<samp class="samp">&lt;key&gt;</samp>&rsquo; and &lsquo;<samp class="samp">&lt;value&gt;</samp>&rsquo; are sequences of one or more
+characters <code class="code">a</code> to <code class="code">z</code>, <code class="code">A</code> to <code class="code">Z</code>, <code class="code">0</code> to
+<code class="code">9</code>, <code class="code">.</code>, <code class="code">-</code>, and <code class="code">_</code>. The colon that separates
+the key and value may have zero or more spaces or tabs on either side.
+</p>
+<p>A value is optional. In case of no value the colon must be omitted as
+well:
+</p>
+<div class="example">
+<pre class="example-preformatted">#+&lt;key&gt;
+</pre></div>
+
+<p>The same key may appear multiple times in a table.
+</p>
+<p>There is no restriction on which keys and values are allowed, as long
+as the syntax is correct. However in order to be really useful there
+must be some standard keys and values. A possible grammar is proposed
+on the wiki page
+<a class="url" href="https://github.com/liblouis/liblouis/wiki/Table-discovery-based-on-table-metadata#standard-metadata-tags">Standard metadata tags</a>.
+</p>
+<a class="anchor" id="Query-Syntax"></a></div>
+<div class="section-level-extent" id="Query-Syntax-1">
+<h3 class="section"><span>4.2 Query Syntax<a class="copiable-link" href="#Query-Syntax-1"> &para;</a></span></h3>
+
+<p>A query that is passed to the <a class="ref" href="lou_005ffindTable.html"><code class="code">lou_findTable</code></a>
+function must have the following syntax:
+</p>
+<div class="example">
+<pre class="example-preformatted">&lt;feature1&gt; &lt;feature2&gt; &lt;feature3&gt; ...
+</pre></div>
+
+<p>where &lsquo;<samp class="samp">&lt;feature&gt;</samp>&rsquo; is either:
+</p>
+<div class="example">
+<pre class="example-preformatted">&lt;key&gt;:&lt;value&gt;
+</pre></div>
+
+<p>or:
+</p>
+<div class="example">
+<pre class="example-preformatted">&lt;key&gt;
+</pre></div>
+
+<p>Features are separated by one or more spaces or tabs. No spaces are
+allowed around colons.
+</p>
+</div>
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="Testing-Translation-Tables-interactively.html">Testing Translation Tables interactively</a>, Previous: <a href="Notes-on-Back_002dTranslation.html">Notes on Back-Translation</a>, Up: <a href="index.html">Liblouis User&rsquo;s and Programmer&rsquo;s Manual</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

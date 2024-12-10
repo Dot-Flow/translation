@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for liblouis (version 3.31.0, 5 November 2024),
+a Braille Translation and Back-Translation Library derived from the
+Linux screen reader BRLTTY.
+
+
+Copyright © 1999-2006 by the BRLTTY Team.
+
+Copyright © 2004-2007 ViewPlus Technologies, Inc.
+www.viewplus.com.
+
+Copyright © 2007, 2009 Abilitiessoft, Inc.
+www.abilitiessoft.org.
+
+Copyright © 2014, 2016 Swiss Library for the Blind, Visually
+Impaired and Print Disabled. www.sbs.ch.
+
+
+This file is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser (or library) General Public License
+(LGPL) as published by the Free Software Foundation; either version 3,
+or (at your option) any later version.
+
+This file is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+Lesser (or Library) General Public License LGPL for more details.
+
+You should have received a copy of the GNU Lesser (or Library) General
+Public License (LGPL) along with this program; see the file COPYING.
+If not, write to the Free Software Foundation, 51 Franklin Street,
+Fifth Floor, Boston, MA 02110-1301, USA. -->
+<title>Letter indicator (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)</title>
+
+<meta name="description" content="Letter indicator (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)">
+<meta name="keywords" content="Letter indicator (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Emphasis-indicators.html" rel="up" title="Emphasis indicators">
+<link href="Word-indicator.html" rel="next" title="Word indicator">
+<link href="Permanent-indicator.html" rel="prev" title="Permanent indicator">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection-level-extent" id="Letter-indicator">
+<div class="nav-panel">
+<p>
+Next: <a href="Word-indicator.html" accesskey="n" rel="next">Word indicator</a>, Previous: <a href="Permanent-indicator.html" accesskey="p" rel="prev">Permanent indicator</a>, Up: <a href="Emphasis-indicators.html" accesskey="u" rel="up">Emphasis indicators</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h4 class="subsubsection" id="Letter-indicator-1"><span>2.6.2.2 Letter indicator<a class="copiable-link" href="#Letter-indicator-1"> &para;</a></span></h4>
+
+<p>Some languages have special indicators for single letter emphasis. The
+letter indicator will be chosen over other indicators when the next
+character is emphasized, but not the characters thereafter.
+</p>
+<p>In some situations the letter indicator is the only way to indicate
+emphasis. For instance when emphasis ends within the middle of a word,
+and a word indicator exists (see <a class="pxref" href="Word-indicator.html">Word indicator</a>), but no way to
+cancel it explicitly. In this case Liblouis will use the letter
+indicator for every emphasized character in the word.
+</p>
+<p>A table is even allowed to define only a letter indicator and no word
+or permanent indicators (see <a class="pxref" href="Permanent-indicator.html">Permanent indicator</a>), in which case the
+letter indicator will be used for any emphasis. It is not very likely
+that there are braille systems that work this way, but this feature
+can be useful anyway.
+</p>
+<dl class="table">
+<dd><a class="index-entry-id" id="index-emphletter"></a>
+<a class="anchor" id="emphletter-opcode"></a></dd>
+<dt><code class="code">emphletter &lt;emphasis class&gt; &lt;dot pattern&gt;</code></dt>
+<dd><p>Braille dot pattern to indicate that the next character is emphasized.
+</p>
+<div class="example">
+<pre class="example-preformatted">emphletter italic 46-25
+</pre></div>
+
+</dd>
+</dl>
+
+</div>
+
+
+
+</body>
+</html>

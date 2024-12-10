@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for liblouis (version 3.31.0, 5 November 2024),
+a Braille Translation and Back-Translation Library derived from the
+Linux screen reader BRLTTY.
+
+
+Copyright © 1999-2006 by the BRLTTY Team.
+
+Copyright © 2004-2007 ViewPlus Technologies, Inc.
+www.viewplus.com.
+
+Copyright © 2007, 2009 Abilitiessoft, Inc.
+www.abilitiessoft.org.
+
+Copyright © 2014, 2016 Swiss Library for the Blind, Visually
+Impaired and Print Disabled. www.sbs.ch.
+
+
+This file is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser (or library) General Public License
+(LGPL) as published by the Free Software Foundation; either version 3,
+or (at your option) any later version.
+
+This file is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+Lesser (or Library) General Public License LGPL for more details.
+
+You should have received a copy of the GNU Lesser (or Library) General
+Public License (LGPL) along with this program; see the file COPYING.
+If not, write to the Free Software Foundation, 51 Franklin Street,
+Fifth Floor, Boston, MA 02110-1301, USA. -->
+<title>lou_findTable (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)</title>
+
+<meta name="description" content="lou_findTable (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)">
+<meta name="keywords" content="lou_findTable (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Programming-with-liblouis.html" rel="up" title="Programming with liblouis">
+<link href="lou_005findexTables.html" rel="next" title="lou_indexTables">
+<link href="lou_005fgetTable.html" rel="prev" title="lou_getTable">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+ul.mark-bullet {list-style-type: disc}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="lou_005ffindTable">
+<div class="nav-panel">
+<p>
+Next: <a href="lou_005findexTables.html" accesskey="n" rel="next">lou_indexTables</a>, Previous: <a href="lou_005fgetTable.html" accesskey="p" rel="prev">lou_getTable</a>, Up: <a href="Programming-with-liblouis.html" accesskey="u" rel="up">Programming with liblouis</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="lou_005ffindTable-1"><span>7.23 lou_findTable<a class="copiable-link" href="#lou_005ffindTable-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-lou_005ffindTable"></a>
+
+<div class="example">
+<pre class="example-preformatted">char *lou_findTable (const char *query);
+</pre></div>
+
+<p>This function can be used to find a table based on
+metadata. <code class="code">query</code> is a string in the special <a class="ref" href="Table-Metadata.html#Query-Syntax">query syntax</a>. It is matched against <a class="ref" href="Table-Metadata.html">table
+metadata</a> inside the tables that were previously indexed with
+<a class="ref" href="lou_005findexTables.html"><code class="code">lou_indexTables</code></a>. Returns the file name of
+the best match. Returns <code class="code">NULL</code> if the query is invalid or if no
+match can be found.
+</p>
+<p>The match algorithm works as follows:
+</p>
+<ul class="itemize mark-bullet">
+<li>For every table a match quotient with the query is computed. The table
+with the highest (positive) match quotient wins. If no table has a
+positive quotient, there is no match.
+</li><li>A query is a list of features. Features defined first have a higher
+importance (have a higher impact on the final quotient) than features
+defined later.
+</li><li>A feature that matches a metadata field in the table (keys equal and
+values equal, or both values absent) adds to the quotient.
+</li><li>A feature that is undefined in the table (no field with that key)
+creates a medium penalty.
+</li><li>A feature that is defined in the table (one or more metadata fields
+with that key) but does not match (no metadata field with the right
+value) creates the highest penalty.
+</li><li>Every field in the table that has no corresponding feature in the
+query creates a very small penalty.
+</li></ul>
+
+</div>
+
+
+
+</body>
+</html>

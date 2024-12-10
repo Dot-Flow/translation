@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for liblouis (version 3.31.0, 5 November 2024),
+a Braille Translation and Back-Translation Library derived from the
+Linux screen reader BRLTTY.
+
+
+Copyright © 1999-2006 by the BRLTTY Team.
+
+Copyright © 2004-2007 ViewPlus Technologies, Inc.
+www.viewplus.com.
+
+Copyright © 2007, 2009 Abilitiessoft, Inc.
+www.abilitiessoft.org.
+
+Copyright © 2014, 2016 Swiss Library for the Blind, Visually
+Impaired and Print Disabled. www.sbs.ch.
+
+
+This file is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser (or library) General Public License
+(LGPL) as published by the Free Software Foundation; either version 3,
+or (at your option) any later version.
+
+This file is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+Lesser (or Library) General Public License LGPL for more details.
+
+You should have received a copy of the GNU Lesser (or Library) General
+Public License (LGPL) along with this program; see the file COPYING.
+If not, write to the Free Software Foundation, 51 Franklin Street,
+Fifth Floor, Boston, MA 02110-1301, USA. -->
+<title>Computer braille (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)</title>
+
+<meta name="description" content="Computer braille (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)">
+<meta name="keywords" content="Computer braille (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Emphasis-Opcodes.html" rel="up" title="Emphasis Opcodes">
+<link href="Note-about-fallback-behavior.html" rel="prev" title="Note about fallback behavior">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="Computer-braille">
+<div class="nav-panel">
+<p>
+Previous: <a href="Note-about-fallback-behavior.html" accesskey="p" rel="prev">Note about fallback behavior</a>, Up: <a href="Emphasis-Opcodes.html" accesskey="u" rel="up">Emphasis Opcodes</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="Computer-braille-1"><span>2.6.4 Computer braille<a class="copiable-link" href="#Computer-braille-1"> &para;</a></span></h4>
+
+<p>For computer braille there are only two braille indicators, for the
+beginning and end of a sequence of characters to be rendered in
+computer braille. Such a sequence may also have other emphasis. The
+computer braille indicators are applied not only when computer braille
+is indicated in the <code class="code">typeform</code> parameter, but also when a
+sequence of characters is determined to be computer braille because it
+contains a subsequence defined by the <code class="code">compbrl</code> opcode (see <a class="pxref" href="Translation-Opcodes.html#compbrl-opcode"><code class="code">compbrl</code></a>).
+</p>
+<dl class="table">
+<dd><a class="index-entry-id" id="index-begcomp"></a>
+<a class="anchor" id="begcomp-opcode"></a></dd>
+<dt><code class="code">begcomp dots</code></dt>
+<dd>
+<p>This braille indicator is placed before a sequence of characters
+translated in computer braille, whether this sequence is indicated in
+the <code class="code">typeform</code> parameter (see <a class="pxref" href="lou_005ftranslateString.html#typeform-parameter"><code class="code">typeform</code> parameter</a>) or inferred because it
+contains a subsequence specified by the <code class="code">compbrl</code> opcode (see <a class="pxref" href="Translation-Opcodes.html#compbrl-opcode"><code class="code">compbrl</code></a>).
+</p>
+<a class="index-entry-id" id="index-endcomp"></a>
+<a class="anchor" id="endcomp-opcode"></a></dd>
+<dt><code class="code">endcomp dots</code></dt>
+<dd>
+<p>This braille indicator is placed after a sequence of characters
+translated in computer braille, whether this sequence is indicated in
+the <code class="code">typeform</code> parameter (see <a class="pxref" href="lou_005ftranslateString.html#typeform-parameter"><code class="code">typeform</code> parameter</a>) or inferred because it
+contains a subsequence specified by the <code class="code">compbrl</code> opcode (see <a class="pxref" href="Translation-Opcodes.html#compbrl-opcode"><code class="code">compbrl</code></a>).
+</p>
+</dd>
+</dl>
+
+</div>
+
+
+
+</body>
+</html>

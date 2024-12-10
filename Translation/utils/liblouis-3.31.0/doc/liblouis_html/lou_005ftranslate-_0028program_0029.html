@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for liblouis (version 3.31.0, 5 November 2024),
+a Braille Translation and Back-Translation Library derived from the
+Linux screen reader BRLTTY.
+
+
+Copyright © 1999-2006 by the BRLTTY Team.
+
+Copyright © 2004-2007 ViewPlus Technologies, Inc.
+www.viewplus.com.
+
+Copyright © 2007, 2009 Abilitiessoft, Inc.
+www.abilitiessoft.org.
+
+Copyright © 2014, 2016 Swiss Library for the Blind, Visually
+Impaired and Print Disabled. www.sbs.ch.
+
+
+This file is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser (or library) General Public License
+(LGPL) as published by the Free Software Foundation; either version 3,
+or (at your option) any later version.
+
+This file is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+Lesser (or Library) General Public License LGPL for more details.
+
+You should have received a copy of the GNU Lesser (or Library) General
+Public License (LGPL) along with this program; see the file COPYING.
+If not, write to the Free Software Foundation, 51 Franklin Street,
+Fifth Floor, Boston, MA 02110-1301, USA. -->
+<title>lou_translate (program) (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)</title>
+
+<meta name="description" content="lou_translate (program) (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)">
+<meta name="keywords" content="lou_translate (program) (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Testing-Translation-Tables-interactively.html" rel="up" title="Testing Translation Tables interactively">
+<link href="lou_005fcheckhyphens.html" rel="next" title="lou_checkhyphens">
+<link href="lou_005fallround.html" rel="prev" title="lou_allround">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+kbd.kbd {font-style: oblique}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="lou_005ftranslate-_0028program_0029">
+<div class="nav-panel">
+<p>
+Next: <a href="lou_005fcheckhyphens.html" accesskey="n" rel="next">lou_checkhyphens</a>, Previous: <a href="lou_005fallround.html" accesskey="p" rel="prev">lou_allround</a>, Up: <a href="Testing-Translation-Tables-interactively.html" accesskey="u" rel="up">Testing Translation Tables interactively</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="lou_005ftranslate-1"><span>5.5 lou_translate<a class="copiable-link" href="#lou_005ftranslate-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-lou_005ftranslate-1"></a>
+
+<p>This program translates whatever is on the standard input unit and
+prints it on the standard output unit. It is intended for large-scale
+testing of the accuracy of translation and back-translation. The
+command line for <code class="command">lou_translate</code> is:
+</p>
+<div class="example">
+<pre class="example-preformatted">lou_translate [OPTION] TABLE
+</pre></div>
+
+<p>where &lsquo;<samp class="samp">TABLE</samp>&rsquo; is either:
+</p>
+<dl class="table">
+<dt><kbd class="kbd">QUERY</kbd></dt>
+<dd><p>a <a class="ref" href="Table-Metadata.html#Query-Syntax">table query</a>
+</p></dd>
+<dt><kbd class="kbd">FILE[,FILE,...]</kbd></dt>
+<dd><p>a comma-separated list of table files
+</p>
+</dd>
+</dl>
+
+<p>Aside from the standard options (see <a class="pxref" href="Testing-Translation-Tables-interactively.html#common-options">common options</a>) this program
+also accepts the following options:
+</p>
+<dl class="table">
+<dt><samp class="option">--forward</samp></dt>
+<dt><samp class="option">-f</samp></dt>
+<dd><p>Do a forward translation.
+</p>
+</dd>
+<dt><samp class="option">--backward</samp></dt>
+<dt><samp class="option">-b</samp></dt>
+<dd><p>Do a backward translation.
+</p>
+</dd>
+</dl>
+
+<p>If no options are given forward translation is assumed.
+</p>
+<p>Use the following command to do a forward translation of English text
+to grade 2 contracted braille according to the U.S. braille standard.
+</p>
+<div class="example">
+<pre class="example-preformatted">lou_translate language:en grade:2 region:en-US &lt; input.txt
+</pre></div>
+
+<p>Use the following command to do a forward translation with translation
+table <samp class="file">en-us-g2.ctb</samp>.
+</p>
+<div class="example">
+<pre class="example-preformatted">lou_translate --forward en-us-g2.ctb &lt; input.txt
+</pre></div>
+
+<p>When you specify the table as a query, the braille encoding is always
+Unicode dot patterns. When you specify the table as a file list, the
+encoding of the resulting braille depends on the character definitions
+in the given table. It is recommended to use a display table, as in
+the following example, if you require a specific braille encoding.
+</p>
+<p>The next example illustrates a forward translation with translation
+table <samp class="file">en-us-g2.ctb</samp> and display table <samp class="file">unicode.dis</samp>. The
+resulting braille is encoded as Unicode dot patterns (as defined in
+<samp class="file">unicode.dis</samp>).
+</p>
+<div class="example">
+<pre class="example-preformatted">lou_translate --forward unicode.dis,en-us-g2.ctb &lt; input.txt
+</pre></div>
+
+<p>Use a pipe if you would rather just pass some given text to the
+translator.
+</p>
+<div class="example">
+<pre class="example-preformatted">echo &quot;The quick brown fox jumps over the lazy dog&quot; | lou_translate -f unicode.dis,en-us-g2.ctb
+</pre></div>
+
+<p>The result will be written to standard output:
+</p>
+<div class="example">
+<pre class="example-preformatted">⠠⠮ ⠟⠅ ⠃⠗⠪⠝ ⠋⠕⠭ ⠚⠥⠍⠏⠎ ⠕⠧⠻ ⠮ ⠇⠁⠵⠽ ⠙⠕⠛
+</pre></div>
+
+<p>Backward translation can be done as follows:
+</p>
+<div class="example">
+<pre class="example-preformatted">echo &quot;,! qk br{n fox jumps ov} ! lazy dog&quot; | lou_translate --backward en-us-g2.ctb
+</pre></div>
+
+<p>which results in
+</p>
+<div class="example">
+<pre class="example-preformatted">The quick brown fox jumps over the lazy dog
+</pre></div>
+
+<p>You can also do a backward translation using Unicode dot patterns
+</p>
+<div class="example">
+<pre class="example-preformatted">echo &quot;⠠⠮ ⠟⠅ ⠃⠗⠪⠝ ⠋⠕⠭&quot; | lou_translate --backward unicode.dis,en-us-g2.ctb
+</pre></div>
+
+<p>resulting in
+</p>
+<div class="example">
+<pre class="example-preformatted">The quick brown fox
+</pre></div>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="lou_005fcheckhyphens.html">lou_checkhyphens</a>, Previous: <a href="lou_005fallround.html">lou_allround</a>, Up: <a href="Testing-Translation-Tables-interactively.html">Testing Translation Tables interactively</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

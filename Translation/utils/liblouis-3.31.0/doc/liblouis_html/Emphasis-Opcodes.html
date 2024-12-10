@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for liblouis (version 3.31.0, 5 November 2024),
+a Braille Translation and Back-Translation Library derived from the
+Linux screen reader BRLTTY.
+
+
+Copyright © 1999-2006 by the BRLTTY Team.
+
+Copyright © 2004-2007 ViewPlus Technologies, Inc.
+www.viewplus.com.
+
+Copyright © 2007, 2009 Abilitiessoft, Inc.
+www.abilitiessoft.org.
+
+Copyright © 2014, 2016 Swiss Library for the Blind, Visually
+Impaired and Print Disabled. www.sbs.ch.
+
+
+This file is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser (or library) General Public License
+(LGPL) as published by the Free Software Foundation; either version 3,
+or (at your option) any later version.
+
+This file is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+Lesser (or Library) General Public License LGPL for more details.
+
+You should have received a copy of the GNU Lesser (or Library) General
+Public License (LGPL) along with this program; see the file COPYING.
+If not, write to the Free Software Foundation, 51 Franklin Street,
+Fifth Floor, Boston, MA 02110-1301, USA. -->
+<title>Emphasis Opcodes (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)</title>
+
+<meta name="description" content="Emphasis Opcodes (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)">
+<meta name="keywords" content="Emphasis Opcodes (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="How-to-Write-Translation-Tables.html" rel="up" title="How to Write Translation Tables">
+<link href="Special-Symbol-Opcodes.html" rel="next" title="Special Symbol Opcodes">
+<link href="Opcodes-for-Standing-Alone-Sequences.html" rel="prev" title="Opcodes for Standing Alone Sequences">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="Emphasis-Opcodes">
+<div class="nav-panel">
+<p>
+Next: <a href="Special-Symbol-Opcodes.html" accesskey="n" rel="next">Special Symbol Opcodes</a>, Previous: <a href="Opcodes-for-Standing-Alone-Sequences.html" accesskey="p" rel="prev">Opcodes for <em class="emph">Standing Alone</em> Sequences</a>, Up: <a href="How-to-Write-Translation-Tables.html" accesskey="u" rel="up">How to Write Translation Tables</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Emphasis-Opcodes-1"><span>2.6 Emphasis Opcodes<a class="copiable-link" href="#Emphasis-Opcodes-1"> &para;</a></span></h3>
+
+<p>In many braille systems emphasis such as bold, italics or underline is
+indicated using special dot patterns that mark the beginning and if
+needed also the end. Some braille systems have several indicators for
+different situations, i.e. an indicator for an emphasized word and
+another one for an emphasized phrase. To accommodate for all these
+usage scenarios liblouis provides a number of opcodes.
+</p>
+<p>At the same time some braille systems use different indicators for
+different kinds of emphasis while others know only one kind of
+emphasis. For that reason liblouis doesn&rsquo;t hard code any emphasis
+types but the table author defines which kind of emphasis exist for a
+specific language using the <code class="code">emphclass</code> opcode (see <a class="pxref" href="Emphasis-classes.html#emphclass-opcode"><code class="code">emphclass</code></a>).
+</p>
+
+<ul class="mini-toc">
+<li><a href="Emphasis-classes.html" accesskey="1">Emphasis classes</a></li>
+<li><a href="Emphasis-indicators.html" accesskey="2">Emphasis indicators</a></li>
+<li><a href="Note-about-fallback-behavior.html" accesskey="3">Note about fallback behavior</a></li>
+<li><a href="Computer-braille.html" accesskey="4">Computer braille</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual is for liblouis (version 3.31.0, 5 November 2024),
+a Braille Translation and Back-Translation Library derived from the
+Linux screen reader BRLTTY.
+
+
+Copyright © 1999-2006 by the BRLTTY Team.
+
+Copyright © 2004-2007 ViewPlus Technologies, Inc.
+www.viewplus.com.
+
+Copyright © 2007, 2009 Abilitiessoft, Inc.
+www.abilitiessoft.org.
+
+Copyright © 2014, 2016 Swiss Library for the Blind, Visually
+Impaired and Print Disabled. www.sbs.ch.
+
+
+This file is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser (or library) General Public License
+(LGPL) as published by the Free Software Foundation; either version 3,
+or (at your option) any later version.
+
+This file is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+Lesser (or Library) General Public License LGPL for more details.
+
+You should have received a copy of the GNU Lesser (or Library) General
+Public License (LGPL) along with this program; see the file COPYING.
+If not, write to the Free Software Foundation, 51 Franklin Street,
+Fifth Floor, Boston, MA 02110-1301, USA. -->
+<title>lou_readCharFromFile (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)</title>
+
+<meta name="description" content="lou_readCharFromFile (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)">
+<meta name="keywords" content="lou_readCharFromFile (Liblouis User&rsquo;s and Programmer&rsquo;s Manual)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Programming-with-liblouis.html" rel="up" title="Programming with liblouis">
+<link href="lou_005ffree.html" rel="next" title="lou_free">
+<link href="lou_005fcheckTable.html" rel="prev" title="lou_checkTable">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="lou_005freadCharFromFile">
+<div class="nav-panel">
+<p>
+Next: <a href="lou_005ffree.html" accesskey="n" rel="next">lou_free</a>, Previous: <a href="lou_005fcheckTable.html" accesskey="p" rel="prev">lou_checkTable</a>, Up: <a href="Programming-with-liblouis.html" accesskey="u" rel="up">Programming with liblouis</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="lou_005freadCharFromFile-1"><span>7.26 lou_readCharFromFile<a class="copiable-link" href="#lou_005freadCharFromFile-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-lou_005freadCharFromFile"></a>
+
+<div class="example">
+<pre class="example-preformatted">int lou_readCharFromFile (
+  const char *fileName,
+  int *mode);
+</pre></div>
+
+<p>This function is provided for situations where it is necessary to read
+a file which may contain little-endian or big-endian 16-bit Unicode
+characters or ASCII8 characters. The return value is a little-endian
+character, encoded as an integer. The <code class="code">fileName</code> parameter is the
+name of the file to be read. The <code class="code">mode</code> parameter is a pointer to
+an integer which must be set to 1 on the first call. After that, the
+function takes care of it. On end-of-file the function returns
+<code class="code">EOF</code>.
+</p>
+</div>
+
+
+
+</body>
+</html>
