@@ -13,7 +13,7 @@ python3 -m venv venv
 echo "Activating virtual environment..."
 source venv/bin/activate
 
-echo "Upgrading pip..."
+# echo "Upgrading pip..."
 # sudo apt-get install python3-pip
 # pip install --upgrade pip
 
