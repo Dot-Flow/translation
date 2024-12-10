@@ -30,7 +30,7 @@ def process_to_text(request_json):
         return jsonify({'error': '점자 인식 오류'}), 500
     
     try:
-        translated_text = b2t.translate(brl_list)  # 점자 번역 함수
+        translated_text = b2t.main(brl_list)  # 점자 번역 함수
         logging.info("Translation successful")
         return jsonify({'text': translated_text}), 200
     except Exception as e:

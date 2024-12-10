@@ -16,7 +16,7 @@ import json
 
 # tableList = ["unicode.dis","ko-g2.ctb"]
 kor_tableList = ["ko-g2.ctb"]
-eng_tableList = ["unicode.dis","en-chardefs.cti"]
+eng_tableList = ["unicode.dis","en-chardefs.cti", "en-us-g2.ctb"]
 
 def lang_detection(text):
     # 한글, 영어 구분
@@ -40,15 +40,14 @@ def lang_detection(text):
 
 def translate(lang, input_brl_list):
     translated_text_list = []
-    tableList = kor_tableList # if lang == "KOR" else eng_tableList
+    tableList = kor_tableList if lang == "KOR" else eng_tableList
     
     for input_brl in input_brl_list:
         translation = louis.backTranslateString(tableList, input_brl, 0, 0)
         translated_text_list.append(translation)
     return translated_text_list
 
-
-if __name__ == "__main__":
+def main(brl_list):
     # with open('data/db/성북소식지04.json', 'r', encoding='utf-8') as f:
     #     data = json.load(f)
     # brl_list = data['correction']['brl']
@@ -56,6 +55,32 @@ if __name__ == "__main__":
     #     print(brl)
     #     print(translate([brl]))
     #     print()
+    
+    detected_brl_list = []
+    for brl in brl_list:
+        detected_brl_list.append(lang_detection(brl))
+    result = ""
+    
+    cur_lang = "KOR"
+    buffer = ""
+    for detected in detected_brl_list:
+        buffer = ""
+        for d in detected:
+            print(d)
+            if d['lang'] != cur_lang:
+                print(buffer)
+                result += translate(cur_lang, [buffer])[0]
+                buffer = d['brl']
+                cur_lang = d['lang']
+            else:
+                buffer += d['brl']
+        result += translate(cur_lang, [buffer])[0]
+        result += '\n'
+    
+    print(result)
+    return result
+    
+if __name__ == '__main__':
     text = "우리나라 기차에는 KTX, 새마을호, 무궁화호 등이 있다."
     brl = "⠍⠐⠕⠉⠐⠣⠀⠈⠕⠰⠣⠝⠉⠵⠀⠴⠠⠠⠅⠞⠭⠐⠀⠠⠗⠑⠣⠮⠚⠥⠐⠀⠑⠍⠈⠍⠶⠚⠧⠚⠥⠀⠊⠪⠶⠕⠀⠕⠌⠊⠲"
     # brl = "⠍⠐⠕⠉⠐⠣"
@@ -83,27 +108,7 @@ if __name__ == "__main__":
             "⠊⠪⠶⠺⠀⠘⠱⠁⠝⠀⠈⠪⠐⠟⠀⠈⠪⠐⠕⠢⠲",
             "⠑⠛⠜⠶⠐⠂⠀⠨⠍⠐⠥⠀⠈⠾⠑⠯⠕⠉⠀⠈⠿⠌⠙⠍⠢⠀⠊⠪⠶⠺",
             "⠑⠍⠉⠺⠲",
-            "⠙⠼⠁⠉⠀⠀⠑⠛⠚⠧⠀⠼⠚⠁⠀⠑"]
+            "⠙⠼⠁⠉⠀⠀⠑⠛⠚⠧⠀⠼⠚⠁⠀⠑",
+            "⠴⠺⠑⠇⠉⠕⠍⠑⠲⠀⠣⠒⠉⠻⠚⠠⠝⠬⠀⠘⠒⠫⠃⠠⠪⠃⠉⠕⠊⠀⠴⠠⠓⠑⠇⠇⠕"]
     print(brl_list)
-    detected_brl_list = []
-    for brl in brl_list:
-        detected_brl_list.append(lang_detection(brl))
-    result = ""
-    
-    cur_lang = "KOR"
-    buffer = ""
-    for detected in detected_brl_list:
-        buffer = ""
-        for d in detected:
-            print(d)
-            if d['lang'] != cur_lang:
-                print(buffer)
-                result += translate(cur_lang, [buffer])[0]
-                buffer = d['brl']
-                cur_lang = d['lang']
-            else:
-                buffer += d['brl']
-        result += translate(cur_lang, [buffer])[0]
-        result += '\n'
-    
-    print(result)
+    main(brl_list)
