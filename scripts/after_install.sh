@@ -19,6 +19,14 @@ pip install --upgrade pip
 echo "Installing dependencies from requirements.txt..."
 if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
+echo "Installing liblouis dependencies..."
+cd Translation/utils/liblouis-3.31.0
+./configure
+make
+sudo make install
+cd python
+python setup.py install
+
 echo "Virtual environment setup complete. Python and pip versions:"
 which python
 python --version
