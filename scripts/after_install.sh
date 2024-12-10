@@ -14,6 +14,7 @@ echo "Activating virtual environment..."
 source venv/bin/activate
 
 echo "Upgrading pip..."
+sudo apt-get install python3-pip
 pip install --upgrade pip
 
 echo "Installing dependencies from requirements.txt..."
