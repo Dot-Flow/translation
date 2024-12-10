@@ -59,9 +59,10 @@ class TestFlaskApp(unittest.TestCase):
 if __name__ == '__main__':
     # unittest.main()
     
-    # BASE_URL = 'http://52.23.254.128:8080'
-    BASE_URL = 'http://localhost:5000'
+    BASE_URL = 'http://43.202.56.121:8080'
+    # BASE_URL = 'http://localhost:5000\'
     url = f'{BASE_URL}/translate/to-text'
+    # url = f'{BASE_URL}/test'
     data = {'brl': [
             "⠼⠁⠀⠦⠆⠼⠁⠰⠴⠑⠛⠊⠒⠝⠠⠎⠉⠵⠀⠟⠐⠩⠀⠱⠁⠇⠝⠠⠎",
             "⠫⠰⠕⠫⠀⠑⠗⠍⠀⠋⠵⠀⠕⠨⠕⠃⠓⠪⠀⠇⠶⠚⠻⠀⠑⠛⠨⠐⠮⠐",
@@ -91,4 +92,5 @@ if __name__ == '__main__':
     
     
     response = requests.post(url, json=data)
+    # response = requests.post(url)
     print(response.json())

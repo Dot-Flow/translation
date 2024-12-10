@@ -16,8 +16,8 @@ source venv/bin/activate
 echo "Upgrading pip..."
 pip install --upgrade pip
 
-# echo "Installing dependencies from requirements.txt..."
-# if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+echo "Installing dependencies from requirements.txt..."
+if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
 echo "Virtual environment setup complete. Python and pip versions:"
 which python
