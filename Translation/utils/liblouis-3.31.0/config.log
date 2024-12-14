@@ -27,11 +27,8 @@ uname -v = #1 SMP Tue Nov 5 00:21:55 UTC 2024
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
 
-PATH: /home/vego/.vscode-server/extensions/ms-python.python-2024.20.0-linux-x64/python_files/deactivate/bash/
-PATH: /home/vego/project/Translation/.venv/bin/
-PATH: /home/vego/.vscode-server/extensions/ms-python.python-2024.20.0-linux-x64/python_files/deactivate/bash/
-PATH: /home/vego/project/Translation/.venv/bin/
-PATH: /home/vego/.vscode-server/bin/f1a4fb101478ce6ec82fe9627c43efbf9e98c813/bin/remote-cli/
+PATH: /home/vego/project/translation/.venv/bin/
+PATH: /home/vego/.vscode-server/bin/138f619c86f1199955d53b4166bef66ef252935c/bin/remote-cli/
 PATH: /usr/local/sbin/
 PATH: /usr/local/bin/
 PATH: /usr/sbin/
@@ -72,6 +69,7 @@ PATH: /mnt/c/Program Files/JetBrains/IntelliJ IDEA 2022.2.3/bin/
 PATH: /mnt/c/Users/khmut/AppData/Roaming/npm/
 PATH: /mnt/c/Users/khmut/AppData/Local/SOOP/
 PATH: /snap/bin/
+PATH: /home/vego/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand/
 
 
 ## ----------- ##
@@ -105,7 +103,7 @@ configure:4870: found /usr/bin/gcc
 configure:4881: result: gcc
 configure:5234: checking for C compiler version
 configure:5243: gcc --version >&5
-gcc (Ubuntu 13.2.0-23ubuntu4) 13.2.0
+gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
 Copyright (C) 2023 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -118,10 +116,10 @@ COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper
 OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
 OFFLOAD_TARGET_DEFAULT=1
 Target: x86_64-linux-gnu
-Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.2.0-23ubuntu4' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-uJ7kn6/gcc-13-13.2.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-uJ7kn6/gcc-13-13.2.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
 Thread model: posix
 Supported LTO compression algorithms: zlib zstd
-gcc version 13.2.0 (Ubuntu 13.2.0-23ubuntu4) 
+gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) 
 ... rest of stderr output deleted ...
 configure:5254: $? = 0
 configure:5243: gcc -V >&5
@@ -185,8 +183,8 @@ configure:5879: checking for compiler option needed when checking for declaratio
 configure:5912: result: none
 configure:5924: checking whether make supports the include directive
 configure:5939: make -f confmf.GNU && cat confinc.out
-make[2]: Entering directory '/home/vego/project/Translation/Translation/utils/liblouis-3.31.0'
-make[2]: Leaving directory '/home/vego/project/Translation/Translation/utils/liblouis-3.31.0'
+make[1]: Entering directory '/home/vego/project/translation/Translation/utils/liblouis-3.31.0'
+make[1]: Leaving directory '/home/vego/project/translation/Translation/utils/liblouis-3.31.0'
 this is the am__doit target
 configure:5942: $? = 0
 configure:5961: result: yes (GNU style)
@@ -917,8 +915,8 @@ configure:10289: $? = 0
 configure:10289: result: yes
 configure:10289: checking for _set_invalid_parameter_handler
 configure:10289: gcc -o conftest -g -O2   conftest.c  >&5
-/usr/bin/ld: /tmp/ccEQNkPA.o: in function `main':
-/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/conftest.c:85:(.text.startup+0xb): undefined reference to `_set_invalid_parameter_handler'
+/usr/bin/ld: /tmp/ccTxHmd4.o: in function `main':
+/home/vego/project/translation/Translation/utils/liblouis-3.31.0/conftest.c:85:(.text.startup+0xb): undefined reference to `_set_invalid_parameter_handler'
 collect2: error: ld returned 1 exit status
 configure:10289: $? = 1
 configure: failed program was:
@@ -1025,8 +1023,8 @@ configure:10289: $? = 0
 configure:10289: result: yes
 configure:10289: checking for getprogname
 configure:10289: gcc -o conftest -g -O2   conftest.c  >&5
-/usr/bin/ld: /tmp/ccpDm1T0.o: in function `main':
-/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/conftest.c:88:(.text.startup+0xb): undefined reference to `getprogname'
+/usr/bin/ld: /tmp/ccRKOO6z.o: in function `main':
+/home/vego/project/translation/Translation/utils/liblouis-3.31.0/conftest.c:88:(.text.startup+0xb): undefined reference to `getprogname'
 collect2: error: ld returned 1 exit status
 configure:10289: $? = 1
 configure: failed program was:
@@ -1124,8 +1122,8 @@ configure: failed program was:
 configure:10289: result: no
 configure:10289: checking for getexecname
 configure:10289: gcc -o conftest -g -O2   conftest.c  >&5
-/usr/bin/ld: /tmp/cc5mHNy8.o: in function `main':
-/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/conftest.c:88:(.text.startup+0xb): undefined reference to `getexecname'
+/usr/bin/ld: /tmp/ccDN48lM.o: in function `main':
+/home/vego/project/translation/Translation/utils/liblouis-3.31.0/conftest.c:88:(.text.startup+0xb): undefined reference to `getexecname'
 collect2: error: ld returned 1 exit status
 configure:10289: $? = 1
 configure: failed program was:
@@ -3887,7 +3885,7 @@ lt_cv_truncate_bin='/usr/bin/dd bs=4096 count=1'
 ## Output variables. ##
 ## ----------------- ##
 
-ACLOCAL='${SHELL} '\''/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/build-aux/missing'\'' aclocal-1.16'
+ACLOCAL='${SHELL} '\''/home/vego/project/translation/Translation/utils/liblouis-3.31.0/build-aux/missing'\'' aclocal-1.16'
 ALLOCA=''
 ALLOCA_H='alloca.h'
 AMDEPBACKSLASH='\'
@@ -3902,9 +3900,9 @@ APPLE_UNIVERSAL_BUILD='0'
 AR='ar'
 ARFLAGS='cr'
 AS='as'
-AUTOCONF='${SHELL} '\''/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/build-aux/missing'\'' autoconf'
-AUTOHEADER='${SHELL} '\''/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/build-aux/missing'\'' autoheader'
-AUTOMAKE='${SHELL} '\''/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/build-aux/missing'\'' automake-1.16'
+AUTOCONF='${SHELL} '\''/home/vego/project/translation/Translation/utils/liblouis-3.31.0/build-aux/missing'\'' autoconf'
+AUTOHEADER='${SHELL} '\''/home/vego/project/translation/Translation/utils/liblouis-3.31.0/build-aux/missing'\'' autoheader'
+AUTOMAKE='${SHELL} '\''/home/vego/project/translation/Translation/utils/liblouis-3.31.0/build-aux/missing'\'' automake-1.16'
 AWK='gawk'
 BITSIZEOF_PTRDIFF_T=''
 BITSIZEOF_SIG_ATOMIC_T=''
@@ -4836,7 +4834,7 @@ LN_S='ln -s'
 LTLIBINTL=''
 LTLIBOBJS=''
 LT_SYS_LIBRARY_PATH=''
-MAKEINFO='${SHELL} '\''/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/build-aux/missing'\'' makeinfo'
+MAKEINFO='${SHELL} '\''/home/vego/project/translation/Translation/utils/liblouis-3.31.0/build-aux/missing'\'' makeinfo'
 MAKEINFO_FOUND=''
 MANIFEST_TOOL=':'
 MKDIR_P='/usr/bin/mkdir -p'
@@ -5148,7 +5146,7 @@ host_vendor='pc'
 htmldir='${docdir}'
 includedir='${prefix}/include'
 infodir='${datarootdir}/info'
-install_sh='${SHELL} /home/vego/project/Translation/Translation/utils/liblouis-3.31.0/build-aux/install-sh'
+install_sh='${SHELL} /home/vego/project/translation/Translation/utils/liblouis-3.31.0/build-aux/install-sh'
 libdir='${exec_prefix}/lib'
 libexecdir='${exec_prefix}/libexec'
 localedir='${datarootdir}/locale'
@@ -5379,34 +5377,34 @@ config.status:2407: creating liblouis/config.h
 config.status:2588: liblouis/config.h is unchanged
 config.status:2636: executing depfiles commands
 config.status:2713: cd liblouis       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
-make[2]: Entering directory '/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/liblouis'
-make[2]: Nothing to be done for 'am--depfiles'.
-make[2]: Leaving directory '/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/liblouis'
+make[1]: Entering directory '/home/vego/project/translation/Translation/utils/liblouis-3.31.0/liblouis'
+make[1]: Nothing to be done for 'am--depfiles'.
+make[1]: Leaving directory '/home/vego/project/translation/Translation/utils/liblouis-3.31.0/liblouis'
 config.status:2718: $? = 0
 config.status:2713: cd tests       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
-make[2]: Entering directory '/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/tests'
-make[2]: Nothing to be done for 'am--depfiles'.
-make[2]: Leaving directory '/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/tests'
+make[1]: Entering directory '/home/vego/project/translation/Translation/utils/liblouis-3.31.0/tests'
+make[1]: Nothing to be done for 'am--depfiles'.
+make[1]: Leaving directory '/home/vego/project/translation/Translation/utils/liblouis-3.31.0/tests'
 config.status:2718: $? = 0
 config.status:2713: cd tests/fuzzing       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
-make[2]: Entering directory '/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/tests/fuzzing'
-make[2]: Nothing to be done for 'am--depfiles'.
-make[2]: Leaving directory '/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/tests/fuzzing'
+make[1]: Entering directory '/home/vego/project/translation/Translation/utils/liblouis-3.31.0/tests/fuzzing'
+make[1]: Nothing to be done for 'am--depfiles'.
+make[1]: Leaving directory '/home/vego/project/translation/Translation/utils/liblouis-3.31.0/tests/fuzzing'
 config.status:2718: $? = 0
 config.status:2713: cd tools       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
-make[2]: Entering directory '/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/tools'
-make[2]: Nothing to be done for 'am--depfiles'.
-make[2]: Leaving directory '/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/tools'
+make[1]: Entering directory '/home/vego/project/translation/Translation/utils/liblouis-3.31.0/tools'
+make[1]: Nothing to be done for 'am--depfiles'.
+make[1]: Leaving directory '/home/vego/project/translation/Translation/utils/liblouis-3.31.0/tools'
 config.status:2718: $? = 0
 config.status:2713: cd tools/gnulib       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
-make[2]: Entering directory '/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/tools/gnulib'
-make[2]: Nothing to be done for 'am--depfiles'.
-make[2]: Leaving directory '/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/tools/gnulib'
+make[1]: Entering directory '/home/vego/project/translation/Translation/utils/liblouis-3.31.0/tools/gnulib'
+make[1]: Nothing to be done for 'am--depfiles'.
+make[1]: Leaving directory '/home/vego/project/translation/Translation/utils/liblouis-3.31.0/tools/gnulib'
 config.status:2718: $? = 0
 config.status:2713: cd gnulib       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
-make[2]: Entering directory '/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/gnulib'
-make[2]: Nothing to be done for 'am--depfiles'.
-make[2]: Leaving directory '/home/vego/project/Translation/Translation/utils/liblouis-3.31.0/gnulib'
+make[1]: Entering directory '/home/vego/project/translation/Translation/utils/liblouis-3.31.0/gnulib'
+make[1]: Nothing to be done for 'am--depfiles'.
+make[1]: Leaving directory '/home/vego/project/translation/Translation/utils/liblouis-3.31.0/gnulib'
 config.status:2718: $? = 0
 config.status:2636: executing libtool commands
 
@@ -5427,20 +5425,3 @@ on DESKTOP-VDHM7DM
 
 config.status:2407: creating liblouis/config.h
 config.status:2588: liblouis/config.h is unchanged
-
-## ---------------------- ##
-## Running config.status. ##
-## ---------------------- ##
-
-This file was extended by Liblouis config.status 3.31.0, which was
-generated by GNU Autoconf 2.71.  Invocation command line was
-
-  CONFIG_FILES    = 
-  CONFIG_HEADERS  = 
-  CONFIG_LINKS    = 
-  CONFIG_COMMANDS = 
-  $ ./config.status tables/Makefile
-
-on DESKTOP-VDHM7DM
-
-config.status:2407: creating tables/Makefile
