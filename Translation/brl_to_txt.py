@@ -21,16 +21,21 @@ eng_tableList = ["unicode.dis","en-chardefs.cti", "en-us-g2.ctb"]
 def lang_detection(text):
     # 한글, 영어 구분
     result = []     # [{lang: KOR, brl: ''}, {lang: ENG, text: ''}]
-    
     lang = "KOR"
-    
     for idx, char in enumerate(text):
         if lang == "KOR":
-            if char == '⠴' and (idx == 0 or text[idx - 1] == chr(0x2800)):
+            if char == '⠴' and (
+                idx == 0 or 
+                text[idx - 1] == chr(0x2800) or 
+                text[idx - 1] == '⠄'):
                 lang = "ENG"
             else:
                 result.append({'lang': lang, 'brl': char})
         elif lang == "ENG":
+            if char == '⠼':
+                lang = "KOR"
+                result.append({'lang': lang, 'brl': char})
+                continue
             if (char == '⠲' or char == '⠐') and (idx + 1 == len(text) or text[idx + 1] == chr(0x2800)):
                 result.append({'lang': lang, 'brl': char})
                 lang = "KOR"
@@ -66,9 +71,9 @@ def main(brl_list):
     for detected in detected_brl_list:
         buffer = ""
         for d in detected:
-            print(d)
+            # print(d)
             if d['lang'] != cur_lang:
-                print(buffer)
+                # print(buffer)
                 result += translate(cur_lang, [buffer])[0]
                 buffer = d['brl']
                 cur_lang = d['lang']
@@ -81,34 +86,7 @@ def main(brl_list):
     return result
     
 if __name__ == '__main__':
-    text = "우리나라 기차에는 KTX, 새마을호, 무궁화호 등이 있다."
-    brl = "⠍⠐⠕⠉⠐⠣⠀⠈⠕⠰⠣⠝⠉⠵⠀⠴⠠⠠⠅⠞⠭⠐⠀⠠⠗⠑⠣⠮⠚⠥⠐⠀⠑⠍⠈⠍⠶⠚⠧⠚⠥⠀⠊⠪⠶⠕⠀⠕⠌⠊⠲"
-    # brl = "⠍⠐⠕⠉⠐⠣"
-    brl_list = [
-            "⠼⠁⠀⠦⠆⠼⠁⠰⠴⠑⠛⠊⠒⠝⠠⠎⠉⠵⠀⠟⠐⠩⠀⠱⠁⠇⠝⠠⠎",
-            "⠫⠰⠕⠫⠀⠑⠗⠍⠀⠋⠵⠀⠕⠨⠕⠃⠓⠪⠀⠇⠶⠚⠻⠀⠑⠛⠨⠐⠮⠐",
-            "⠦⠆⠼⠃⠰⠴⠑⠛⠊⠒⠝⠠⠎⠉⠵⠀⠟⠐⠩⠀⠰⠽⠰⠥⠺⠀⠇⠶⠚⠻",
-            "⠑⠛⠨⠣⠟⠀⠈⠥⠊⠗⠀⠕⠨⠕⠃⠓⠪⠀⠇⠶⠚⠻⠀⠑⠛⠨⠐⠮⠐",
-            "⠦⠆⠼⠉⠰⠴⠑⠛⠊⠒⠝⠠⠎⠉⠵⠀⠈⠥⠊⠗⠀⠕⠨⠕⠃⠓⠪⠀⠇⠶⠚⠻",
-            "⠑⠛⠨⠣⠺⠀⠚⠗⠊⠭⠀⠈⠌⠈⠕⠫⠀⠊⠽⠒⠀⠠⠦⠐⠥⠨⠝⠓⠠⠹⠴⠄",
-            "⠮⠐⠀⠦⠆⠼⠙⠰⠴⠑⠛⠊⠒⠝⠠⠎⠉⠵⠀⠑⠛⠨⠣⠺⠀⠘⠂⠊⠂",
-            "⠈⠧⠨⠻⠮⠀⠘⠥⠱⠀⠨⠍⠉⠵⠀⠈⠥⠊⠗⠀⠕⠨⠕⠃⠓⠪⠀⠇⠶⠚⠻",
-            "⠑⠛⠨⠣⠝⠀⠊⠗⠚⠗⠀⠠⠞⠑⠻⠚⠈⠥⠀⠕⠌⠠⠪⠃⠉⠕⠊⠲",
-            "⠼⠃⠀⠈⠥⠊⠗⠀⠕⠨⠕⠃⠓⠪⠀⠇⠶⠚⠻⠀⠑⠛⠨⠣⠟",
-            "⠠⠦⠚⠕⠝⠐⠥⠈⠮⠐⠕⠙⠪⠴⠄⠉⠵⠀⠰⠥⠈⠕⠝⠉⠵",
-            "⠠⠊⠪⠄⠈⠮⠨⠣⠧⠀⠠⠥⠐⠕⠈⠮⠨⠣⠺⠀⠠⠻⠈⠱⠁⠕",
-            "⠚⠷⠬⠶⠊⠽⠊⠫⠀⠨⠎⠢⠰⠣⠀⠠⠥⠐⠕⠐⠮⠀⠉⠓⠉⠗⠉⠵",
-            "⠑⠛⠨⠐⠥⠀⠘⠠⠈⠍⠗⠎⠌⠉⠵⠊⠝⠐⠀⠕⠀⠈⠧⠨⠻⠕⠀⠑⠛⠨⠣⠺",
-            "⠕⠂⠘⠒⠨⠹⠟⠀⠘⠂⠊⠂⠀⠈⠧⠨⠻⠮⠀⠘⠥⠱⠀⠨⠛⠊⠉⠵",
-            "⠨⠎⠢⠝⠠⠎⠀⠋⠵⠀⠫⠰⠕⠫⠀⠕⠌⠠⠪⠃⠉⠕⠊⠲",
-            "⠿⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠿",
-            "⠼⠚⠋⠉⠠⠨⠭⠀⠥⠉⠮⠺⠀⠎⠚⠍⠗",
-            "⠕⠂⠇⠶⠐⠂⠀⠉⠂⠑⠊⠀⠘⠒⠘⠭⠊⠽⠉⠵⠀⠠⠗⠶⠚⠧⠂⠲",
-            "⠘⠱⠁⠚⠧⠐⠂⠀⠈⠾⠑⠯⠕⠉⠀⠊⠿⠈⠯⠐⠀⠑⠍⠊⠎⠢",
-            "⠊⠪⠶⠺⠀⠘⠱⠁⠝⠀⠈⠪⠐⠟⠀⠈⠪⠐⠕⠢⠲",
-            "⠑⠛⠜⠶⠐⠂⠀⠨⠍⠐⠥⠀⠈⠾⠑⠯⠕⠉⠀⠈⠿⠌⠙⠍⠢⠀⠊⠪⠶⠺",
-            "⠑⠍⠉⠺⠲",
-            "⠙⠼⠁⠉⠀⠀⠑⠛⠚⠧⠀⠼⠚⠁⠀⠑",
-            "⠴⠺⠑⠇⠉⠕⠍⠑⠲⠀⠣⠒⠉⠻⠚⠠⠝⠬⠀⠘⠒⠫⠃⠠⠪⠃⠉⠕⠊⠀⠴⠠⠓⠑⠇⠇⠕"]
-    print(brl_list)
+    with open('../data/annotations/성북소식지14.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    brl_list = data['brl']
     main(brl_list)

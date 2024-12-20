@@ -90,19 +90,24 @@ include litdigits6Dots.uti
 # Letters are defined in chardefs.cti
 
 # punctuation
+always ※ 456-35
 prepunc ( 236-3
 word ( 236-3
+always ( 236-3
 noback always ( 236-3
 postpunc ) 6-356
 word ) 6-356
 noback always ) 6-356
-prepunc " 236
-postpunc " 356
-word " 236
+prepunc “ 236
+postpunc ” 356
+word “ 236
 prepunc ` 236
 prepunc ‘ 6-236
 always ’ 356-3
+postpunc ’ 356-3
+punctuation ’ 356-3
 word ' 4-3
+punctuation ' 4-3
 word 'em = 
 word 'tis =
 word 'twas =
@@ -117,6 +122,7 @@ hyphen - 36
 always \s--\s 36-36
 always \s-\s 36-36
 midnum \x00ad 36
+always . 256
 postpunc . 256
 word . 256
 noback always . 256
@@ -145,10 +151,10 @@ endnum 's 3-234
 always % 356-1234
 midnum ^ 45
 always ^ 456-126
-always ~ 36-36
+always ~ 4-35
 always & 4-12346
-midnum * 5-23
-always * 35-35
+always · 5-23
+always * 5-35
 prepunc [ 236-23
 word [ 236-23
 always [ 236-23

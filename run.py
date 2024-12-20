@@ -451,5 +451,5 @@ def feedback_loop():
 
 if __name__ == '__main__':
     logging.info("Starting Flask app")
-    app.run(port=8080)
+    app.run(host='0.0.0.0', port=8080)
     logging.info("Flask app stopped")

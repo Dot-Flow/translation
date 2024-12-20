@@ -1,2 +1,4 @@
 dotflow_keypair.pem
 data
+Translation/brl_to_txt_dev.py
+Translation/txt_to_brl_dev.py

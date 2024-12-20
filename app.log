@@ -33,3 +33,35 @@
 2024-12-08 19:24:38,937 - root - ERROR - 서버 오류 발생: Could not reach host. Are you offline?
 2024-12-08 19:24:38,937 - werkzeug - INFO - 127.0.0.1 - - [08/Dec/2024 19:24:38] "[35m[1mPOST /translate/to-text HTTP/1.1[0m" 500 -
 2024-12-08 19:59:23,636 - root - INFO - Flask app stopped
+2024-12-15 03:31:54,326 - root - INFO - Starting Flask app
+2024-12-15 03:31:54,331 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2024-12-15 03:31:54,331 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 03:32:10,661 - root - INFO - Flask app stopped
+2024-12-15 03:32:19,236 - root - INFO - Starting Flask app
+2024-12-15 03:32:19,241 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://172.27.246.57:8080
+2024-12-15 03:32:19,241 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 03:32:39,747 - root - INFO - Process: translation - to text
+2024-12-15 03:32:39,796 - root - INFO - Translation successful
+2024-12-15 03:32:39,797 - werkzeug - INFO - 127.0.0.1 - - [15/Dec/2024 03:32:39] "POST /translate/to-text HTTP/1.1" 200 -
+2024-12-15 03:40:45,773 - root - INFO - Process: translation - to text
+2024-12-15 03:40:45,782 - root - INFO - Translation successful
+2024-12-15 03:40:45,782 - werkzeug - INFO - 127.0.0.1 - - [15/Dec/2024 03:40:45] "POST /translate/to-text HTTP/1.1" 200 -
+2024-12-15 03:40:49,548 - root - INFO - Flask app stopped
+2024-12-15 04:45:15,148 - root - INFO - Starting Flask app
+2024-12-15 04:45:15,153 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://172.27.246.57:8080
+2024-12-15 04:45:15,153 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 04:45:16,074 - root - INFO - Flask app stopped
+2024-12-15 04:45:30,618 - root - INFO - Starting Flask app
+2024-12-15 04:45:30,621 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://172.27.246.57:8080
+2024-12-15 04:45:30,621 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 04:45:31,766 - root - INFO - Flask app stopped
